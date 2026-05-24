@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SRO - Dashboard de Telemetria</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff00; font-family: 'Courier New', monospace; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .card { border: 1px solid #00ff00; padding: 15px; background: #111; }
+        .status-ok { color: #00ff00; }
+        .status-warn { color: #ffff00; }
+        h1 { border-bottom: 2px solid #00ff00; font-size: 24px; }
+        .radar { color: #00ff00; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <h1><span class="radar">⦿</span> TELEMETRIA DA NAVE SRO - COMANDANTE GOT</h1>
+    <div class="grid">
+        <div class="card">
+            <h3>🖥️ SISTEMAS</h3>
+            <p>GitHub: <span class="status-ok">ONLINE</span></p>
+            <p>SQL: <span class="status-warn">MIGRANDO</span></p>
+            <p>Docker: <span class="status-warn">SENSOR ATIVO</span></p>
+        </div>
+        <div class="card">
+            <h3>📦 LOGÍSTICA</h3>
+            <p>Leads Ativos: 12</p>
+            <p>Motores Rodando: 3 (Tattoo/Halley/Volvo)</p>
+            <p>Esteira v1.1: PRONTA</p>
+        </div>
+        <div class="card">
+            <h3>⚖️ GOVERNANÇA</h3>
+            <p>Conselho: <span class="status-ok">ATIVO</span></p>
+            <p>Engenheiro-Chefe: <span class="status-ok">OPERANDO</span></p>
+            <p>Missão #001: EM CURSO</p>
+        </div>
+    </div>
+</body>
+</html>
