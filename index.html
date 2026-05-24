@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATRIZ SRO | Holding de Motores Inteligentes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        
+        :root {
+            --primary: #00f2ff;
+            --bg: #050505;
+            --card-bg: #111;
+            --text: #fff;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 60px 20px;
+            text-align: center;
+            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+            border-bottom: 1px solid #222;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        #busca {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #inputBusca {
+            background: #111;
+            border: 1px solid #333;
+            padding: 20px 40px;
+            border-radius: 50px;
+            color: white;
+            width: 100%;
+            max-width: 600px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        #inputBusca:focus {
+            border-color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 30px;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: #161616;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            background: #222;
+            padding: 5px 12px;
+            border-radius: 50px;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        h3 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+
+        p {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .status {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #00ff88;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff88;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            color: #444;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .sro-logo {
+            font-weight: 900;
+            color: white;
+            background: black;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MATRIZ SRO</h1>
+            <div class="subtitle">Aceleradora Industrial de Motores Inteligentes</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="busca">
+            <input type="text" id="inputBusca" placeholder="Explorar nichos (ex: Academia, Barbearia, Saúde)...">
+        </section>
+
+        <section id="listaProdutos" class="grid">
+            <!-- Injetado por JS -->
+        </section>
+    </main>
+
+    <footer>
+        <p>Desenvolvido pela Inteligência <span class="sro-logo">SRO</span></p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
