@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Halley Show | Sistema SRO v6</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --gym-orange: #FF5F00;
+            --gym-yellow: #FFD300;
+            --bg-dark: #070707;
+            --card-glass: rgba(255, 255, 255, 0.04);
+            --text-white: #FFFFFF;
+            --text-gray: #A0A0A0;
+            --green-accent: #00FF1A;
+            --blue-accent: #00D1FF;
+            --purple-accent: #7B2CBF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 15px 15px 110px 15px;
+        }
+
+        /* Sistema de Abas Navegáveis */
+        input[name="main-nav"] { display: none; }
+        .app-section { display: none; animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        #nav-home:checked ~ .app-container #section-home { display: block; }
+        #nav-treinos:checked ~ .app-container #section-treinos { display: block; }
+        #nav-chat:checked ~ .app-container #section-chat { display: block; }
+        #nav-perfil:checked ~ .app-container #section-perfil { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HEADER */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 5px; 
+            margin-bottom: 10px;
+        }
+        .header-title { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
+
+        /* TRÍADE SAGRADA (O CORAÇÃO DO SISTEMA) */
+        .triade-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .triade-item {
+            background: var(--card-glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .triade-item:active { transform: scale(0.95); }
+        .triade-item .icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+        .triade-item h4 { font-size: 0.75rem; font-weight: 800; margin-bottom: 4px; }
+        .triade-item p { font-size: 0.55rem; font-weight: 900; text-transform: uppercase; opacity: 0.7; }
+
+        /* Cores da Tríade */
+        .triade-sofia { border-bottom: 3px solid var(--green-accent); }
+        .triade-mestre { border-bottom: 3px solid var(--gym-orange); }
+        .triade-nobre { border-bottom: 3px solid var(--blue-accent); }
+
+        /* MODAIS DA TRÍADE */
+        .modal-triade {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 2000;
+            display: none; flex-direction: column; padding: 40px 25px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .modal-content h2 { font-size: 2rem; font-weight: 900; margin-bottom: 10px; }
+        .modal-content h3 { color: var(--text-gray); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        .modal-content p { font-size: 1.1rem; line-height: 1.6; color: #CCC; margin-bottom: 30px; }
+        
+        .btn-close-modal { background: white; color: black; border: none; padding: 12px 25px; border-radius: 12px; font-weight: 800; cursor: pointer; }
+
+        /* DASHBOARD TREINO */
+        .training-card {
+            background: white; color: black; border-radius: 24px; padding: 25px; margin-bottom: 25px;
+        }
+        .training-card h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+        .training-card p { font-size: 0.85rem; font-weight: 600; color: #666; margin-bottom: 20px; }
+        
+        .btn-start-training {
+            width: 100%; background: var(--bg-dark); color: white; border: none;
+            padding: 18px; border-radius: 18px; font-weight: 800; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(7, 7, 7, 0.98); backdrop-filter: blur(20px);
+            display: flex; justify-content: space-around; padding: 10px 10px 35px 10px;
+            border-top: 1px solid rgba(255,255,255,0.05); z-index: 1000;
+        }
+        .nav-link { text-align: center; color: #555; font-size: 0.65rem; font-weight: 600; flex: 1; cursor: pointer; }
+        .nav-icon { font-size: 1.5rem; display: block; margin-bottom: 4px; opacity: 0.5; }
+
+        #nav-home:checked ~ .navbar label[for="nav-home"],
+        #nav-treinos:checked ~ .navbar label[for="nav-treinos"],
+        #nav-chat:checked ~ .navbar label[for="nav-chat"],
+        #nav-perfil:checked ~ .navbar label[for="nav-perfil"] { color: var(--gym-orange); }
+        
+        #nav-home:checked ~ .navbar label[for="nav-home"] .nav-icon,
+        #nav-treinos:checked ~ .navbar label[for="nav-treinos"] .nav-icon,
+        #nav-chat:checked ~ .navbar label[for="nav-chat"] .nav-icon,
+        #nav-perfil:checked ~ .navbar label[for="nav-perfil"] .nav-icon { opacity: 1; }
+
+    </style>
+</head>
+<body>
+
+    <input type="radio" name="main-nav" id="nav-home" checked>
+    <input type="radio" name="main-nav" id="nav-treinos">
+    <input type="radio" name="main-nav" id="nav-chat">
+    <input type="radio" name="main-nav" id="nav-perfil">
+
+    <div class="app-container">
+        
+        <!-- SECTION: HOME -->
+        <section id="section-home" class="app-section">
+            <header>
+                <div class="header-title">Halley Show</div>
+                <div style="background: var(--card-glass); padding: 8px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 800;">SRO v6</div>
+            </header>
+
+            <div class="training-card">
+                <h2>Bora treinar, Got?</h2>
+                <p>Treino de Hoje: Membros Superiores (A)</p>
+                <label for="nav-treinos" class="btn-start-training" style="display: block; text-align: center; text-decoration: none;">Acessar Treino Agora</label>
+            </div>
+
+            <div style="margin-bottom: 15px; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; color: var(--text-gray); letter-spacing: 1px;">A Tríade Sagrada</div>
+            
+            <div class="triade-grid">
+                <div class="triade-item triade-sofia" onclick="openTriade('sofia')">
+                    <span class="icon">👩‍💼</span>
+                    <h4>Sofia</h4>
+                    <p>Secretária</p>
+                </div>
+                <div class="triade-item triade-mestre" onclick="openTriade('mestre')">
+                    <span class="icon">🏋️‍♂️</span>
+                    <h4>Mestre Shape</h4>
+                    <p>Professor</p>
+                </div>
+                <div class="triade-item triade-nobre" onclick="openTriade('nobre')">
+                    <span class="icon">👔</span>
+                    <h4>Meu Nobre</h4>
+                    <p>Gerente</p>
+                </div>
+            </div>
+
+            <div style="background: var(--card-glass); border-radius: 20px; padding: 20px; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="font-weight: 800;">Status do Motor</h3>
+                    <span style="color: var(--green-accent); font-size: 0.7rem; font-weight: 900;">OPERACIONAL</span>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <div style="flex: 1; height: 4px; background: var(--green-accent); border-radius: 2px;"></div>
+                    <div style="flex: 1; height: 4px; background: var(--green-accent); border-radius: 2px;"></div>
+                    <div style="flex: 1; height: 4px; background: var(--green-accent); border-radius: 2px;"></div>
+                    <div style="flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUTRAS SEÇÕES (SIMULADAS) -->
+        <section id="section-treinos" class="app-section">
+            <header><div class="header-title">Treinos</div></header>
+            <div style="text-align: center; padding: 50px 20px;">
+                <h1 style="font-size: 4rem;">🏋️‍♂️</h1>
+                <h2>Motor de Treino Ativo</h2>
+                <p style="color: var(--text-gray); margin-top: 10px;">O Mestre Shape está carregando suas séries...</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- MODAIS DA TRÍADE -->
+    <div id="modalTriade" class="modal-triade">
+        <div class="modal-header">
+            <div style="font-weight: 900; letter-spacing: 2px;">SRO CORE</div>
+            <button class="btn-close-modal" onclick="closeTriade()">FECHAR</button>
+        </div>
+        <div class="modal-content" id="modalContent">
+            <!-- Dinâmico -->
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <label for="nav-home" class="nav-link">
+            <span class="nav-icon">🏠</span>
+            HOME
+        </label>
+        <label for="nav-treinos" class="nav-link">
+            <span class="nav-icon">💪</span>
+            TREINOS
+        </label>
+        <label for="nav-chat" class="nav-link">
+            <span class="nav-icon">💬</span>
+            SOFIA
+        </label>
+        <label for="nav-perfil" class="nav-link">
+            <span class="nav-icon">👤</span>
+            PERFIL
+        </label>
+    </nav>
+
+    <script>
+        const triadeData = {
+            sofia: {
+                title: "Sofia",
+                subtitle: "Secretária Invisível",
+                desc: "Eu cuido do seu encantamento. Faço a triagem dos seus leads, agendo suas aulas experimentais e garanto que nenhum aluno esfrie. Sou a ponte entre a curiosidade e o fechamento.",
+                color: "#00FF1A"
+            },
+            mestre: {
+                title: "Mestre Shape",
+                subtitle: "Especialista Técnico",
+                desc: "Eu sou o Halley Show digitalizado. Prescrevo treinos de alta performance, acompanho sua evolução técnica e garanto que cada repetição conte. Conhecimento de elite em cada série.",
+                color: "#FF5F00"
+            },
+            nobre: {
+                title: "Meu Nobre",
+                subtitle: "Gerente Estratégico",
+                desc: "Eu administro os números. Cuido das renovações, do financeiro e da escala do negócio. Enquanto você foca no treino, eu foco na saúde do seu caixa e na retenção dos seus sócios.",
+                color: "#00D1FF"
+            }
+        };
+
+        function openTriade(key) {
+            const data = triadeData[key];
+            const modal = document.getElementById('modalTriade');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <h2 style="color: ${data.color}">${data.title}</h2>
+                <h3>${data.subtitle}</h3>
+                <p>${data.desc}</p>
+                <div style="background: ${data.color}; height: 10px; width: 60px; border-radius: 5px;"></div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeTriade() {
+            document.getElementById('modalTriade').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
