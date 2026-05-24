@@ -1,0 +1,74 @@
+[
+  {
+    "id": "af9ca2de-9976-4f9b-b031-9d7f20e9bb5d",
+    "nome": "Estúdio Elite",
+    "nicho": "Tattoo & Piercing",
+    "descricao": "Atendimento encantador e agendamento inteligente para estúdios que buscam profissionalismo.",
+    "status": "Operacional",
+    "valor": "SRO Standard"
+  },
+  {
+    "id": "ea46b09e-00bc-470d-86fa-1e2963aa736f",
+    "nome": "Academia Pro",
+    "nicho": "Fitness & Bem-estar",
+    "descricao": "O Web-App definitivo para retenção de alunos e gestão de treinos personalizados.",
+    "status": "Escala",
+    "valor": "SRO Premium"
+  },
+  {
+    "id": "791d479f-1dcb-4e2a-8cb2-cc5d7ae1095d",
+    "nome": "Sistema Escolar",
+    "nicho": "Educação",
+    "descricao": "A ponte digital entre escola, pais e alunos. Comunicação sem ruídos.",
+    "status": "Operacional",
+    "valor": "SRO Standard"
+  },
+  {
+    "id": "2da6497a-8ed2-433a-a12e-c41156979270",
+    "nome": "Gestão Odonto",
+    "nicho": "Saúde/Odontologia",
+    "descricao": "Qualificação de leads e agendamento automático para clínicas odontológicas.",
+    "status": "Operacional",
+    "valor": "SRO Standard"
+  },
+  {
+    "id": "24cee8a7-ff52-4b52-b6d1-39c0f8df0e5a",
+    "nome": "Barbearia Master",
+    "nicho": "Barbearia",
+    "descricao": "Transforme curiosos em clientes fiéis com a Sofia cuidando da sua agenda.",
+    "status": "Operacional",
+    "valor": "SRO Standard"
+  },
+  {
+    "id": "1d77b112-ca95-4215-81ad-cf056a95d670",
+    "nome": "SRO Pharma",
+    "nicho": "Farmácia",
+    "descricao": "Controle de validade e manejo de estoque inteligente para farmácias.",
+    "status": "Operacional",
+    "valor": "SRO Standard"
+  },
+  {
+    "id": "0423fde2-c746-4cbc-8067-c50e3c29b1f6",
+    "nome": "Concierge Marítimo",
+    "nicho": "Turismo Náutico",
+    "descricao": "Gestão de experiências e passeios náuticos de alto padrão.",
+    "status": "Operacional",
+    "valor": "SRO Premium"
+  },
+  {
+    "id": "ad0dcadb-8ac2-40f7-b84f-03221ab79a9e",
+    "nome": "Volvo Frotistas",
+    "nicho": "Logística/Vendas",
+    "descricao": "Gestão de relacionamento e vendas para o setor de transporte pesado.",
+    "status": "Operacional",
+    "valor": "High Ticket"
+  },
+  {
+    "id": "fd-01",
+    "nome": "Garçom Digital",
+    "nicho": "Gastronomia/Delivery",
+    "descricao": "Reduza taxas de apps e fidelize seus clientes no seu próprio canal.",
+    "status": "Operacional",
+    "valor": "Performance"
+  }
+]
